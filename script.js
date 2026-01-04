@@ -2,7 +2,7 @@ let isFetching = false;
 
 const API_KEY = "live_YZfNQqKCn3UBeTNVaQ8DRMC1NJWwdK5nGkdCaSH4iGhNi9rify1vggjCUVeT4VCo";
 const CAT_API_URL = "https://api.thecatapi.com/v1/images/search?limit=10";
-
+const likedKey = "likedCats";
 const container = document.getElementById("card-container");
 
 async function fetchCats() {
@@ -105,6 +105,12 @@ function swipe(direction) {
   currentCard.style.transform = `translateX(${moveOut}px) rotate(${moveOut / 10}deg)`;
   currentCard.style.opacity = 0;
 
+  if (direction === "right") {
+    const bg = currentCard.style.backgroundImage;
+    const url = bg.slice(5, -2); // extract image url
+    saveLikedCat(url);
+  }
+
   setTimeout(() => {
     currentCard.remove();
 
@@ -115,9 +121,42 @@ function swipe(direction) {
 }
 
 
+
 function resetCard() {
   currentCard.style.transform = "translateX(0) rotate(0)";
 }
 
+function getLikedCats() {
+  return JSON.parse(localStorage.getItem(likedKey)) || [];
+}
+
+function saveLikedCat(url) {
+  const liked = getLikedCats();
+  liked.push(url);
+  localStorage.setItem(likedKey, JSON.stringify(liked));
+}
+
 fetchCats();
+
+const likedBtn = document.getElementById("likedBtn");
+const likedView = document.getElementById("likedView");
+const likedGrid = document.getElementById("likedGrid");
+
+likedBtn.addEventListener("click", () => {
+  likedGrid.innerHTML = "";
+  const likedCats = getLikedCats();
+
+  likedCats.forEach(url => {
+    const img = document.createElement("img");
+    img.src = url;
+    likedGrid.appendChild(img);
+  });
+
+  likedView.classList.remove("hidden");
+});
+
+likedView.addEventListener("click", () => {
+  likedView.classList.add("hidden");
+});
+
 
