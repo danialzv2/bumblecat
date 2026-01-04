@@ -153,8 +153,18 @@ body {
     gap: 6px;
   }
 
-}
+  .container {
+    padding: 10px;
+  }
 
+  #card-container {
+    width: 95vw;
+    max-width: 360px;
+    height: 70vh;        /* 🔥 responsive height */
+    max-height: 500px;  /* safety cap */
+  }
+
+}
 
 
 
