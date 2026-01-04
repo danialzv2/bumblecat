@@ -142,6 +142,21 @@ body {
   display: none;
 }
 
+/* 📱 Mobile adjustments */
+@media (max-width: 600px) {
+
+  .header {
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 18px;   /* smaller logo */
+    gap: 6px;
+  }
+
+}
+
+
 
 
 
