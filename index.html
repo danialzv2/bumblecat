@@ -14,10 +14,24 @@
     </div>
   </header>
 
-  <main class="container">
-    <div id="card-container"></div>
-  </main>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <button id="likedBtn">❤️ LIKED KITTY</button>
+    </aside>
+
+    <!-- Main swipe area -->
+    <main class="container">
+      <div id="card-container"></div>
+    </main>
+
+    <!-- Liked view -->
+    <section id="likedView" class="liked-view hidden">
+      <h2>❤️ Liked Kitty</h2>
+      <div id="likedGrid" class="liked-grid"></div>
+    </section>
+  </div>
 
   <script src="script.js"></script>
 </body>
-</html>
+
